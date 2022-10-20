@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>商品表单</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/fontawesome-stars.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/ion-fonts.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/slick.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/animate.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/venobox.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/nice-select.css}">
+    <link rel="stylesheet" th:href="@{assets/css/style.css}">
+
+</head>
+
+<body class="template-color-1">
+
+<div class="main-wrapper">
+
+    <div th:replace="system/common/commons.html::topBar"></div>
+
+    <!-- Begin Umino's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li class="active">商品列表</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Breadcrumb Area End Here -->
+
+    <!-- Begin Umino's Content Wrapper Area -->
+    <div class="umino-content_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 order-2 order-lg-1">
+                    <div class="umino-sidebar-catagories_area">
+                        <div class="umino-sidebar_categories">
+                            <div class="umino-categories_title first-child">
+                                <h5>手机商品列表</h5>
+                            </div>
+                        </div>
+                        <div class="umino-sidebar_categories umino-banner_area sidebar-banner_area">
+                            <div class="banner-item img-hover_effect">
+                                <div class="banner-img">
+                                    <a href="javascript:void(0)">
+                                        <img class="img-full" src="assets/images/banner/3-1.jpg" alt="Umino's Banner">
+                                    </a>
+                                </div>
+                                <div class="banner-content banner-content-2">
+                                    <span>小米6</span>
+                                    <h4>抢购中</h4>
+                                    <h3>全新深蓝配色</h3>
+                                    <div class="umino-btn-ps_center">
+                                        <a class="umino-btn umino-btn_dark umino-btn_yellow"
+                                           href="shop-list.html">点击购买</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="shop-banner_area">
+                        <div class="banner-item img-hover_effect">
+                            <a href="javascript:void(0)">
+                                <img src="assets/images/shop/1.jpg" alt="#">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="shop-toolbar">
+                        <div class="product-view-mode">
+                            <a class="active grid-3" data-target="gridview-3" data-toggle="tooltip" data-placement="top"
+                               title="Grid View"><i class="fa fa-th"></i></a>
+                        </div>
+                    </div>
+                    <div class="shop-product-wrap grid gridview-3 row">
+                        <div class="col-lg-4 col-md-4 col-sm-6" th:each="goodsInfo : ${goodsInfos}">
+
+                            <div class="slide-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a th:href="@{/toSingleGood(goodsId=${goodsInfo.getId()})}">
+                                            <img class="primary-img" th:src="${goodsInfo.getGoodsImg()}"
+                                                 alt="Umino's Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="product-desc_info">
+                                            <div class="price-box">
+                                                <span class="new-price">￥[[${goodsInfo.getGoodsPrice()}]]</span>
+                                                <span class="old-price">￥10000</span>
+                                            </div>
+                                            <h6 class="product-name"><a th:href="@{/toSingleGood(goodsId=${goodsInfo.getId()})}">[[${goodsInfo.getGoodsDetail()}]]</a>
+                                            </h6>
+                                            <div class="rating-box">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="umino-paginatoin-area">
+                                <ul class="umino-pagination-box">
+                                    <li class="active"><a href="javascript:void(0)">1</a></li>
+                                    <li><a href="javascript:void(0)">2</a></li>
+                                    <li><a href="javascript:void(0)">3</a></li>
+                                    <li><a href="javascript:void(0)">4</a></li>
+                                    <li><a href="javascript:void(0)">5</a></li>
+                                    <li><a class="Next" href="javascript:void(0)">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Content Wrapper Area End Here -->
+
+    <div th:replace="system/common/commons.html::bottomBar"></div>
+
+</div>
+
+
+
+</body>
+
+</html>
+

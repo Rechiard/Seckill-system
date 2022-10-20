@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="e.commerce.haowu.system.mapper.OrderInfoMapper">
+
+    <select id="countByTable" resultType="java.lang.Integer">
+        select count(A.id) from order_info A LEFT JOIN delivery_addr_info B on A.delivery_addr_id = B.id where A.status = 1
+    </select>
+
+    <select id="listByTable" resultType="e.commerce.haowu.system.vo.OrderVo">
+        select <include refid="OrdersInfoVo2"/>
+        from order_info A LEFT JOIN delivery_addr_info B on A.delivery_addr_id = B.id
+        where A.status = 1
+        limit #{entity.offset}, #{entity.limit}
+    </select>
+
+    <select id="countHistory" resultType="java.lang.Integer">
+        select count(A.id) from order_info A LEFT JOIN delivery_addr_info B on A.delivery_addr_id = B.id where A.status = 3
+    </select>
+
+    <select id="listHistory" resultType="e.commerce.haowu.system.vo.OrderVo">
+        select <include refid="OrdersInfoVo2"/>
+        from order_info A LEFT JOIN delivery_addr_info B on A.delivery_addr_id = B.id
+        where A.status = 3
+        limit #{entity.offset}, #{entity.limit}
+    </select>
+
+    <select id="selectByUserId" resultType="e.commerce.haowu.system.entity.OrderInfo">
+        select <include refid="OrdersInfoVo"/>
+        from order_info A
+        where A.status = 1  and A.user_id = #{userId} and A.delivery_addr_id is NULL
+    </select>
+
+    <sql id="OrdersInfoVo">
+        A.id,
+        A.user_id,
+        A.goods_id,
+        A.goods_name,
+        A.goods_count,
+        A.goods_img,
+        A.goods_price,
+        A.goods_capacity,
+        A.create_time,
+        A.delivery_addr_id
+    </sql>
+
+    <sql id="OrdersInfoVo2">
+        A.id,
+        A.goods_name,
+        A.goods_count,
+        A.goods_img,
+        A.goods_price,
+        A.goods_capacity,
+        A.create_time,
+        B.user_nickname,
+        B.user_mobile,
+        B.user_delivery_addr
+    </sql>
+
+    <update id="updateDeliveryAddrByUserId">
+        update order_info A
+        set A.delivery_addr_id = #{deliveryAddrId}
+        where A.status = 1 and A.user_id = #{userId}
+    </update>
+
+    <update id="updateStatusById">
+        update order_info A
+        set A.status = 3
+        where A.id = #{id}
+    </update>
+
+</mapper>

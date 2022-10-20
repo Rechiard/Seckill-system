@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>商品详情</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <!-- CSS
+	============================================ -->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/vendor/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/vendor/fontawesome-stars.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/vendor/ion-fonts.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugins/slick.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugins/animate.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugins/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugins/venobox.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+</head>
+
+<body class="template-color-1">
+
+<div class="main-wrapper">
+
+
+    <!-- Begin Umino's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li>首页</li>
+                    <li class="active">商品详情</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Breadcrumb Area End Here -->
+
+    <!-- Begin Umino's Single Product Area -->
+    <div class="sp-area">
+        <div class="container">
+            <div class="sp-nav">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="sp-img_area">
+                            <div class="zoompro-border">
+                                <img class="zoompro" id="goodsImg" alt="Umino's Product Image"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="sp-content">
+
+                            <div class="sp-heading">
+                                <h2 id="goodsName"></h2>
+                            </div>
+
+                            <div class="price-box">
+                                <span>秒杀价： ￥</span>
+                                <span class="new-price" id="seckillPrice">1111111 </span>
+                            </div>
+                            <div class="price-box">
+                                <span>原价： ￥</span>
+                                <span class="old-price" id="goodsPrice">222222</span>
+                            </div>
+
+                            <div class="product-desc">
+                                <p id="goodsDetail"></p>
+                            </div>
+                            <div class="in-stock">
+                                <span>秒杀开始时间:</span>
+                                <span id="startTime"></span>
+                            </div>
+
+                            <div class="in-stock">
+                                <input type="hidden" id="remainSeconds">
+                                <span id="seckillTip"></span>
+                            </div>
+
+
+                            <div class="quantity">
+                                <img id="captchaImg" width="130" height="32" onclick="refreshCaptcha()" style="display: none"/>
+                                <input id="captcha" class="form-control" style="display: none">
+                                <div class="additional-btn_area">
+                                    <button type="button" id="buyButton" class="additional_btn" onclick="getSeckillPath()">抢购
+                                    <input type="hidden" id="goodsId" name="goodsId">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="category-list_area">
+                                <div class="additional-btn_area">
+                                    <label>所有支付方式</label>
+                                    <a href="javascript:void(0)">
+                                        <img src="assets/images/footer/payment/1.png" alt="Umino's Payment Method">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Single Product Area End Here -->
+
+    <!-- Begin Umino's Single Product Tab Area -->
+    <div class="sp-tab_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sp-product-tab_nav">
+                        <div class="product-tab">
+                            <ul class="nav product-menu">
+                                <li><a class="active" data-toggle="tab" href="#description"><span>商品介绍</span></a>
+                                </li>
+                                <li><a data-toggle="tab" href="#specification"><span>规格与包装</span></a></li>
+                                <li><a data-toggle="tab" href="#reviews"><span>售后保证</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content umino-tab_content">
+                            <div id="description" class="tab-pane active show" role="tabpanel">
+                                <div class="product-description">
+                                    <p class="short-desc">
+                                        美国作家、电影剧本编剧。年轻并极富魅力，深爱阅读与创作，为《纽约时报书评》撰稿，现居洛杉矶。毕业于哈佛大学英美文学系，已经出版了八本小说，作品被翻译成二十多种语言。14岁时，她写了一封关于“枪与玫瑰乐团”的信函投给当地报社，措辞激烈，意外获得该报的乐评人一职，迈出了成为作家的第一步。一直以来，她对书、书店以及爱书人的未来，充满见解。她的第八本小说《岛上书店》在2014年以无人能比的高票数，获选美国独立书商选书桂冠。作者官网：http://gabriellezevin.com/
+                                    </p>
+                                    <p class="additional-desc">
+                                        Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis
+                                        fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa
+                                        massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit
+                                        est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere
+                                        nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et,
+                                        luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="specification" class="tab-pane" role="tabpanel">
+                                <table class="table table-bordered specification-inner_stuff">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>权利声明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td>所有商品信息、客户评价、商品咨询、网友讨论等内容，是京东重要的经营资源，未经许可，禁止非法转载使用。</td>
+                                        <td>
+                                            注：本站商品信息均来自于合作方，其真实性、准确性和合法性由信息拥有者（合作方）负责。本站不提供任何保证，并不承担任何法律责任。印刷版次不同，印刷时间和版次以实物为准。
+                                        </td>
+                                        <td>商城向您保证所售商品均为正品行货，商品开具机打发票或电子发票。</td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>价格说明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td><strong>销售价:</strong>商品的销售价，是您最终决定是否购买商品的依据。</td>
+                                        <td><strong>折扣：</strong>如无特殊说明，折扣指销售商在原价、或划线价（如品牌专柜标价、商品吊牌价、厂商指导价、厂商建议零售价）等某一价格基础上计算出的优惠比例或优惠金额；如有疑问，您可在购买前联系销售商进行咨询。
+                                        </td>
+                                        <td><strong>异常问题：</strong>商品促销信息以商品详情页“促销”栏中的信息为准；商品的具体售价以订单结算页价格为准；如您发现活动商品售价或促销信息有异常，建议购买前先联系销售商咨询。
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="reviews" class="tab-pane" role="tabpanel">
+                                <table class="table table-bordered specification-inner_stuff">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>权利声明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td>所有商品信息、客户评价、商品咨询、网友讨论等内容，是京东重要的经营资源，未经许可，禁止非法转载使用。</td>
+                                        <td>
+                                            注：本站商品信息均来自于合作方，其真实性、准确性和合法性由信息拥有者（合作方）负责。本站不提供任何保证，并不承担任何法律责任。印刷版次不同，印刷时间和版次以实物为准。
+                                        </td>
+                                        <td>商城向您保证所售商品均为正品行货，商品开具机打发票或电子发票。</td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>价格说明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td><strong>销售价:</strong>商品的销售价，是您最终决定是否购买商品的依据。</td>
+                                        <td><strong>折扣：</strong>如无特殊说明，折扣指销售商在原价、或划线价（如品牌专柜标价、商品吊牌价、厂商指导价、厂商建议零售价）等某一价格基础上计算出的优惠比例或优惠金额；如有疑问，您可在购买前联系销售商进行咨询。
+                                        </td>
+                                        <td><strong>异常问题：</strong>商品促销信息以商品详情页“促销”栏中的信息为准；商品的具体售价以订单结算页价格为准；如您发现活动商品售价或促销信息有异常，建议购买前先联系销售商咨询。
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Single Product Tab Area End Here -->
+
+    <!-- Begin Umino's Banner Area Six -->
+    <div class="umino-banner_area umino-banner_area-6">
+
+    </div>
+    <!-- Umino's Banner Area Six End Here -->
+
+
+    <!-- Begin Umino's Footer Area -->
+    <div class="umino-footer_area">
+        <div class="footer-top_area bg--tangerine_yellow">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="newsletter-area">
+                            <div class="newsletter-info">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                <span>订阅时事通讯并获得折扣</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="newsletter-form_wrap">
+                            <form action="#" method="post" id="mc-embedded-subscribe-form"
+                                  name="mc-embedded-subscribe-form" class="newsletters-form validate" target="_blank"
+                                  novalidate>
+                                <div id="mc_embed_signup_scroll">
+                                    <div id="mc-form" class="mc-form subscribe-form">
+                                        <input id="mc-email" class="newsletter-input" type="email" autocomplete="off"
+                                               placeholder="输入你的邮箱"/>
+                                        <button class="newsletter-btn" id="mc-submit">订阅</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-middle_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 order-1 order-lg-1">
+                        <div class="footer-widgets_title">
+                            <h4>联系方式</h4>
+                        </div>
+                        <div class="footer-widgets footer-contact_info">
+                            <ul>
+                                <li>
+                                    <i class="ion-ios-home-outline"></i>
+                                    <span>天津市天津师范大学，邮编300382</span>
+                                </li>
+                                <li>
+                                    <i class="ion-ios-email-outline"></i>
+                                    <span>邮箱:</span>
+                                    <a href="#">616316004@qq.com</a>
+                                </li>
+                                <li>
+                                    <i class="ion-android-call"></i>
+                                    <span>电话:</span>
+                                    <div class="cellphone-number_area">
+                                        <a href="tel://+17622736441/">(+86)17622736441</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="ion-ios-calendar-outline"></i>
+                                    <span>周一至周六晚上9:00至5:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6 order-2 order-lg-2">
+                        <div class="footer-widgets_title">
+                            <h4>公司简介</h4>
+                        </div>
+                        <div class="footer-widgets">
+                            <ul>
+                                <li><a href="#">联系</a></li>
+                                <li><a href="#">关于我们</a></li>
+                                <li><a href="#">隐私政策</a></li>
+                                <li><a href="#">客户服务</a></li>
+                                <li><a href="#">常见问题</a></li>
+                                <li><a href="#">送货信息</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 order-3 order-lg-4">
+                        <div class="footer-widgets_title">
+                            <h4>最新讯息</h4>
+                        </div>
+                        <div class="footer-widgets latest-tweets_area">
+                            <div class="latest-tweets_slider">
+                                <div class="twitter-single_item">
+                                    <div class="twitter-feed_content">
+                                        <p>这是关于电子商品前台的展示页面</p>
+                                    </div>
+                                    <div class="twitter-feed_footer">
+                                        <a href="javascript:void(0)">2022年</a>
+                                        <a href="javascript:void(0)">1月</a>
+                                        <a href="javascript:void(0)">20日</a>
+                                        <a href="javascript:void(0)">15:05</a>
+                                        <a href="javascript:void(0)">项目周期一年</a>
+                                    </div>
+                                </div>
+                                <div class="twitter-single_item">
+                                    <div class="twitter-feed_content">
+                                        <p>项目的特色在于秒杀功能的编写，而前台页面专门为了渲染展示效果更佳真实
+                                        </p>
+                                    </div>
+                                    <div class="twitter-feed_footer">
+                                        <a href="javascript:void(0)">2022年</a>
+                                        <a href="javascript:void(0)">4月</a>
+                                        <a href="javascript:void(0)">20日</a>
+                                        <a href="javascript:void(0)">毕设</a>
+                                        <a href="javascript:void(0)">项目周期一年</a>
+                                    </div>
+                                </div>
+                                <div class="twitter-single_item">
+                                    <div class="twitter-feed_content">
+                                        <p>本项目是基于SpringBoot和Redis的秒杀系统的开发与设计，涉及到多个技术，例如Redis，Mybatis，Thymleaf，RabbitMQ
+                                            等多种技术
+                                        </p>
+                                    </div>
+                                    <div class="twitter-feed_footer">
+                                        <a href="javascript:void(0)">Mybatis</a>
+                                        <a href="javascript:void(0)">SpringBoot</a>
+                                        <a href="javascript:void(0)">Redis</a>
+                                        <a href="javascript:void(0)">RabbitMQ</a>
+                                        <a href="javascript:void(0)">Shiro</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom_area">
+            <div class="container">
+                <div class="footer-bottom_nav">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-7 order-3 order-md-1">
+                            <div class="copyright">
+                                <span>Copyright &copy; 2022.Company name All rights reserved.</span>
+                            </div>
+                            <div class="umino-social_link">
+                                <ul>
+                                    <li class="facebook">
+                                        <a href="#" data-toggle="tooltip" target="_blank" title="Facebook">
+                                            <i class="fab fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="twitter">
+                                        <a href="#" data-toggle="tooltip" target="_blank" title="Twitter">
+                                            <i class="fab fa-twitter-square"></i>
+                                        </a>
+                                    </li>
+                                    <li class="instagram">
+                                        <a href="#" data-toggle="tooltip" target="_blank" title="Instagram">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li class="linkedin">
+                                        <a href="#" data-toggle="tooltip" target="_blank" title="linkedin">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li class="rss">
+                                        <a href="#" data-toggle="tooltip" target="_blank" title="rss">
+                                            <i class="fa fa-rss"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-3 col-md-5 order-1 order-md-2">
+                            <div class="footer-logo">
+                                <a href="javascript:void(0)">
+                                    <img src="assets/images/footer/logo/1.png" alt="Umino's Logo">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 order-2">
+                            <div class="payment-method">
+                                <h3 class="heading">所有支付方式</h3>
+                                <a href="javascript:void(0)">
+                                    <img src="assets/images/footer/payment/1.png" alt="Umino's Payment Method">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Footer Area End Here -->
+
+    <!-- Begin Umino's Modal Area -->
+    <div class="modal fade modal-wrapper" id="exampleModalCenter">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-inner-area sp-area row">
+                        <div class="col-lg-5">
+                            <div class="sp-img_area">
+                                <div class="sp-img_slider-2 slick-img-slider umino-slick-slider arrow-type-two"
+                                     data-slick-options='{
+                                                        "slidesToShow": 1,
+                                                        "arrows": false,
+                                                        "fade": true,
+                                                        "draggable": false,
+                                                        "swipe": false,
+                                                        "asNavFor": ".sp-img_slider-nav"
+                                                        }'>
+                                    <div class="single-slide red">
+                                        <img src="assets/images/product/large-size/1.jpg" alt="Umino's Product Image">
+                                    </div>
+                                    <div class="single-slide orange">
+                                        <img src="assets/images/product/large-size/2.jpg" alt="Umino's Product Image">
+                                    </div>
+                                    <div class="single-slide brown">
+                                        <img src="assets/images/product/large-size/3.jpg" alt="Umino's Product Image">
+                                    </div>
+                                    <div class="single-slide umber">
+                                        <img src="assets/images/product/large-size/4.jpg" alt="Umino's Product Image">
+                                    </div>
+                                </div>
+                                <div class="sp-img_slider-nav slick-slider-nav umino-slick-slider arrow-type-two"
+                                     data-slick-options='{
+                                   "slidesToShow": 4,
+                                    "asNavFor": ".sp-img_slider-2",
+                                   "focusOnSelect": true
+                                  }' data-slick-responsive='[
+                                                        {"breakpoint":1501, "settings": {"slidesToShow": 3}},
+                                                        {"breakpoint":1200, "settings": {"slidesToShow": 2}},
+                                                        {"breakpoint":992, "settings": {"slidesToShow": 4}},
+                                                        {"breakpoint":768, "settings": {"slidesToShow": 3}},
+                                                        {"breakpoint":321, "settings": {"slidesToShow": 2}}
+                                                    ]'>
+                                    <div class="single-slide red">
+                                        <img src="assets/images/product/small-size/1.jpg"
+                                             alt="Umino's Product Thumnail">
+                                    </div>
+                                    <div class="single-slide orange">
+                                        <img src="assets/images/product/small-size/2.jpg"
+                                             alt="Umino's Product Thumnail">
+                                    </div>
+                                    <div class="single-slide brown">
+                                        <img src="assets/images/product/small-size/3.jpg"
+                                             alt="Umino's Product Thumnail">
+                                    </div>
+                                    <div class="single-slide umber">
+                                        <img src="assets/images/product/small-size/4.jpg"
+                                             alt="Umino's Product Thumnail">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-6">
+                            <div class="sp-content">
+                                <div class="sp-heading">
+                                    <h5><a href="single-product.html">Aliquet Auctor Semali</a></h5>
+                                </div>
+                                <div class="price-box">
+                                    <span class="new-price">$70.00</span>
+                                    <span class="old-price">$80.00</span>
+                                </div>
+                                <div class="features">
+                                    <a href="single-product.html">See all features</a>
+                                </div>
+                                <div class="quantity-area">
+                                    <div class="quantity">
+                                        <label>Quantity</label>
+                                        <div class="cart-plus-minus">
+                                            <input class="cart-plus-minus-box" value="1" type="text">
+                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="quantity-btn">
+                                        <ul>
+                                            <li><a href="cart.html" class="add-to_cart">Add To Cart</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="short-desc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate,
+                                        tristique ut lectus</p>
+                                </div>
+                                <div class="umino-social_link">
+                                    <div class="social-title">
+                                        <h3>Share This Product</h3>
+                                    </div>
+                                    <ul>
+                                        <li class="facebook">
+                                            <a href="https://www.facebook.com/" data-toggle="tooltip" target="_blank"
+                                               title="Facebook">
+                                                <i class="fab fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="twitter">
+                                            <a href="https://twitter.com/" data-toggle="tooltip" target="_blank"
+                                               title="Twitter">
+                                                <i class="fab fa-twitter-square"></i>
+                                            </a>
+                                        </li>
+                                        <li class="youtube">
+                                            <a href="https://www.youtube.com/" data-toggle="tooltip" target="_blank"
+                                               title="Youtube">
+                                                <i class="fab fa-youtube"></i>
+                                            </a>
+                                        </li>
+                                        <li class="google-plus">
+                                            <a href="https://www.plus.google.com/discover" data-toggle="tooltip"
+                                               target="_blank" title="Google Plus">
+                                                <i class="fab fa-google-plus"></i>
+                                            </a>
+                                        </li>
+                                        <li class="instagram">
+                                            <a href="https://rss.com/" data-toggle="tooltip" target="_blank"
+                                               title="Instagram">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Modal Area End Here -->
+
+</div>
+
+
+<script type="text/javascript" src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="/layer/layer.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+
+</body>
+
+
+<script>
+
+    $(function () {
+        getDetails();
+    });
+
+    //从后端获取商品详情
+    function getDetails() {
+        var goodsId = g_getQueryString("goodsId");
+        $.ajax({
+            url: '/system/goodsInfo/detail/' + goodsId,
+            type: 'GET',
+            success: function (data) {
+                if (data.code == 200) {
+                    render(data.data);
+                } else {
+                    layer.msg("客户端请求出错");
+                }
+            },
+            error: function () {
+                layer.msg("客户端请求出错");
+            }
+        });
+    }
+
+    //获取秒杀路径
+    function getSeckillPath() {
+        var goodsId = $("#goodsId").val();
+        var captcha = $("#captcha").val();
+        g_showLoading();
+        $.ajax({
+            url: "/seckill/path",
+            type: "GET",
+            data: {
+                goodsId: goodsId,
+                captcha: captcha
+            },
+            success: function (data) {
+                if (data.code == 200) {
+                    var path = data.data;
+                    doSeckill(path);
+                } else {
+                    layer.msg(data.message);
+                }
+            },
+            error: function () {
+                layer.msg("客户端请求错误");
+            }
+        })
+    }
+
+    //秒杀按钮
+    function doSeckill(path) {
+        console.log("在打印台输出");
+        $.ajax({
+            url: '/seckill/' + path + '/doSeckill',
+            tyoe: 'GET',
+            data: {
+                goodsId: $("#goodsId").val()
+            },
+            success: function (data) {
+                if (data.code == 200) {
+                    //window.location.href = "/orderDetail.htm?orderId=" + data.obj.id;
+                    getResult($("#goodsId").val());
+                } else {
+                    layer.msg(data.message);
+                }
+            },
+            error: function () {
+                layer.msg("客户端请求错误");
+            }
+        })
+    }
+
+    //获取秒杀成功或失败的结果
+    function getResult(goodsId) {
+        g_showLoading();    //加载动画
+        $.ajax({
+            url: "/seckill/result",
+            type: "GET",
+            data: {goodsId: goodsId},
+            success: function (data) {
+                if (data.code == 200) {
+                    var result = data.data;
+
+                    if (result < 0) {
+                        layer.msg("对不起，秒杀失败");
+                    } else if (result == 0) {
+                        //轮询
+                        setTimeout(function () {
+                            getResult(goodsId);
+                        }, 50)
+                    } else {
+                        layer.confirm("恭喜你，秒杀成功！请问是否需要查看订单？", {btn: ["确定", "取消"]},
+                            function () {
+                                window.location.href = "/toCart";
+                            },
+                            function () {
+                                layer.close();
+                            })
+                    }
+
+                } else {
+                    layer.msg("客户端请求错误");
+                }
+            },
+            error: function () {
+                layer.msg("客户端请求错误");
+            }
+        })
+    }
+
+    //刷新图片
+    function refreshCaptcha() {
+        $("#captchaImg").attr("src", "/seckill/captcha?goodsId=" + $("#goodsId").val() + "&time=" + new Date());
+    }
+
+    //渲染商品详情
+    function render(detail) {
+        var goods = detail.seckillGoodsInfoVo;
+        var remainSeconds = detail.remainSeconds;
+
+        $("#goodsName").text(goods.goodsName);
+        $("#goodsImg").attr("src", goods.goodsImg);
+        $("#startTime").text(new Date(goods.startDate).format("yyyy-MM-dd HH:mm:ss"));
+        $("#remainSeconds").val(remainSeconds);
+        $("#goodsId").val(goods.goodsId);
+        $("#goodsPrice").text(goods.goodsPrice);
+        $("#seckillPrice").text(goods.seckillPrice);
+        $("#goodsDetail").text(goods.goodsDetail);
+        countDown();
+    }
+
+    //倒计时转化时间格式
+    function formatSeconds(value) {
+        var theTime = parseInt(value);// 需要转换的时间秒
+        var theTime1 = 0;// 分
+        var theTime2 = 0;// 小时
+        var theTime3 = 0;// 天
+        if(theTime > 60) {
+            theTime1 = parseInt(theTime/60);
+            theTime = parseInt(theTime%60);
+            if(theTime1 > 60) {
+                theTime2 = parseInt(theTime1/60);
+                theTime1 = parseInt(theTime1%60);
+                if(theTime2 > 24){
+                    //大于24小时
+                    theTime3 = parseInt(theTime2/24);
+                    theTime2 = parseInt(theTime2%24);
+                }
+            }
+        }
+        var result = '';
+        if(theTime > 0){
+            result = ""+parseInt(theTime)+"秒";
+        }
+        if(theTime1 > 0) {
+            result = ""+parseInt(theTime1)+"分"+result;
+        }
+        if(theTime2 > 0) {
+            result = ""+parseInt(theTime2)+"小时"+result;
+        }
+        if(theTime3 > 0) {
+            result = ""+parseInt(theTime3)+"天"+result;
+        }
+        return result;
+    }
+
+    //倒计时
+    function countDown() {
+        var remainSeconds = $("#remainSeconds").val();
+        var timeout;
+        //秒杀还未开始
+        if (remainSeconds > 0) {
+            $("#buyButton").attr("disabled", true);
+            $("#seckillTip").html("秒杀倒计时：" + formatSeconds(remainSeconds));
+            timeout = setTimeout(function () {
+                $("#remainSeconds").val(remainSeconds - 1);
+                countDown();
+            }, 1000);
+            // 秒杀进行中
+        } else if (remainSeconds == 0) {
+            $("#buyButton").attr("disabled", false);
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+            $("#seckillTip").html("秒杀进行中");
+            $("#captchaImg").attr("src", "/seckill/captcha?goodsId=" + $("#goodsId").val() + "&time=" + new Date());
+            $("#captcha").show();
+            $("#captchaImg").show();
+        } else {
+            $("#buyButton").attr("disabled", true);
+            $("#seckillTip").html("秒杀已经结束");
+            $("#captchaImg").hide();
+            $("#captcha").hide();
+        }
+    };
+
+</script>
+
+
+
+</html>
+

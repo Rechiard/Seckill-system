@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>首页</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" th:href="@{assets/css/vendor/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/fontawesome-stars.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/ion-fonts.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/slick.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/animate.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/venobox.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/nice-select.css}">
+    <link rel="stylesheet" th:href="@{assets/css/style.css}">
+
+</head>
+
+<body class="template-color-1">
+
+<div class="main-wrapper">
+
+    <!-- Begin Loading Area -->
+    <div class="loading">
+        <div class="text-center middle">
+                <span class="loader">
+            <span class="loader-inner"></span>
+                </span>
+        </div>
+    </div>
+    <!-- Loading Area End Here -->
+
+    <!-- Begin Umino's Header Main Area -->
+    <header class="header-main_area">
+        <div class="header-top_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5">
+                        <div class="ht-left_area">
+                            <div class="header-shipping_area">
+                                <span>所有版权归<strong>个人</strong>所有</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="ht-right_area">
+                            <div class="ht-menu">
+                                <ul>
+                                    <li>
+                                        <a th:if="${nickname == null}" th:href="@{/toLoginOrRegister}">登录</a>
+                                        <a th:href="@{/toMyAccount}" th:if="${nickname != null}">[[${nickname}]]</a>
+                                    </li>
+                                    <li th:if="${admin == 2}"><a th:href="@{/toBackIndex}">查看后台</a></li>
+                                    <li><a th:if="${nickname != null}" th:href="@{/toCart}">购物车</a></li>
+                                    <li><a th:if="${nickname != null}" th:href="@{/loginOut}">登出</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-middle_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-2">
+                        <div class="header-logo">
+                            <a href="index.html">
+                                <img src="assets/images/menu/logo/1.png" alt="Umino's Header Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 d-none d-lg-block">
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom_area bg--tangerine_yellow">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-9 col-sm-7">
+                        <div class="category-menu">
+                            <div class="category-heading">
+                                <h2 class="categories-toggle"><span>所有类型</span></h2>
+                            </div>
+                            <div id="cate-toggle" class="category-menu-list">
+                                <ul>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=1)}">液晶电视机</a></li>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=2)}">录像机</a></li>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=4)}">电子平板</a></li>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=3)}">手机</a></li>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=5)}">电脑</a></li>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=6)}">游戏机</a></li>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=7)}">收音机</a></li>
+                                    <li style="height: 57.5px;"><a th:href="@{/toShopList(type=8)}">投影仪</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 d-none d-lg-block position-static">
+                        <div class="main-menu_area">
+                            <nav class="main_nav">
+                                <ul>
+                                    <li><a th:href="@{/toIndex}">首页</a></li>
+                                    <li><a th:href="@{/toShopList(type=3)}">手 机</a></li>
+                                    <li><a th:href="@{/toShopList(type=5)}">电 脑</a></li>
+                                    <li><a th:href="@{/toShopList(type=1)}">电视机</a></li>
+                                    <li><a th:href="@{/toShopList(type=4)}">电子平板</a></li>
+                                    <li><a th:href="@{/toShopList(type=6)}">游戏机</a></li>
+                                    <li><a th:href="@{/toShopList(type=7)}">收音机</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-menu_wrapper" id="mobileMenu">
+
+        </div>
+    </header>
+    <!-- Umino's Header Main Area End Here -->
+
+    <div class="umino-slider_area umino-slider_area-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 offset-lg-3">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="main-slider slider-navigation_style-1">
+                                <div class="single-slide animation-style-03 bg-5">
+                                    <div class="container">
+                                        <div class="slider-content">
+                                            <h4>立即抢购</h4>
+                                            <h3>IPHONE 13</h3>
+                                            <span>5折优惠起</span>
+                                            <div class="umino-btn-ps_left slide-btn">
+                                                <a class="umino-slider_btn" th:href="@{/toShopList(type=3)}">点击购买</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-slide animation-style-03 bg-6">
+                                    <div class="container">
+                                        <div class="slider-content">
+                                            <h4>仅剩下一天</h4>
+                                            <h3>IPHONE 13 Pro</h3>
+                                            <span>5折优惠起</span>
+                                            <div class="umino-btn-ps_left slide-btn">
+                                                <a class="umino-slider_btn" th:href="@{/toShopList(type=3)}">点击购买</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 umi-custom_offset">
+                            <div class="banner-item img-hover_effect">
+                                <div class="banner-content">
+                                    <span>小米 6</span>
+                                    <h4>抢购中</h4>
+                                    <h3>全新深蓝配色</h3>
+                                    <div class="umino-btn-ps_center">
+                                        <a class="umino-btn umino-btn_dark" th:href="@{/toShopList(type=3)}">点击购买</a>
+                                    </div>
+                                </div>
+                                <div class="banner-img">
+                                    <a th:href="@{/toShopList(type=3)}">
+                                        <img class="img-full" src="assets/images/banner/3-1.jpg" alt="Umino's Banner">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Begin Umino's Product Tab Area -->
+    <div class="umino-product-tab_area">
+        <div class="umino-product-tab_nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-tab">
+                            <ul class="nav product-menu">
+                                <li><a class="active" data-toggle="tab" href="#featured"><span>秒杀商品</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">`
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="umino-content_wrapper">
+                        <div class="shop-product-wrap grid gridview-3 row" >
+                            <div class="col-lg-4 col-md-4 col-sm-6" th:each="seckill : ${seckills}">
+                                <div class="slide-item" >
+                                    <div class="single-product">
+                                        <div class="product-img">
+                                            <a th:href="'/goodsDetail.htm?goodsId=' + ${seckill.getGoodsId()}">
+                                                <img class="primary-img" th:src="${seckill.getGoodsImg()}"
+                                                     alt="Umino's Product Image">
+                                            </a>
+
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-desc_info">
+                                                <div class="price-box">
+                                                    <span class="new-price">$[[${seckill.getSeckillPrice()}]]</span>
+                                                    <span class="old-price">$[[${seckill.getGoodsPrice()}]]</span>
+                                                </div>
+                                                <h6 class="product-name">
+                                                    <a th:href="'/goodsDetail.htm?goodsId=' + ${seckill.getGoodsId()}">[[${seckill.getGoodsDetail()}]]</a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Product Tab Area End Here -->
+
+    <div th:replace="system/common/commons.html::bottomBar"></div>
+
+</div>
+
+
+
+
+</body>
+
+</html>
+

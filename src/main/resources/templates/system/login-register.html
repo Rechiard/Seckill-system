@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>登录 & 注册</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/fontawesome-stars.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/ion-fonts.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/slick.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/animate.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/venobox.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/nice-select.css}">
+    <link rel="stylesheet" th:href="@{assets/css/style.css}">
+</head>
+
+<body class="template-color-1">
+
+<div class="main-wrapper">
+
+    <div th:replace="system/common/commons.html::topBar"></div>
+
+    <!-- Begin Umino's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a th:href="@{/toIndex}">首页</a></li>
+                    <li class="active">登录 & 注册</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Breadcrumb Area End Here -->
+
+    <!-- Begin Umino's Login Register Area -->
+    <div class="umino-product-tab_area">
+
+        <div class="umino-product-tab_nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-tab">
+                            <ul class="nav product-menu">
+                                <li><a class="active" data-toggle="tab" href="#login"><span>登录</span></a></li>
+                                <li><span>|</span></li>
+                                <li><a data-toggle="tab" href="#register"><span>注册</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tab-content umino-tab_content">
+                        <div id="login" class="tab-pane active show" role="tabpanel">
+                            <!-- Login Form s-->
+                            <form name="loginForm" id="loginForm" method="post">
+                                <div class="login-form">
+                                    <div class="row">
+                                        <div class="col-md-12 col-12">
+                                            <label>手机号码*</label>
+                                            <input class="form-control" type="text" id="mobile" name="mobile" required="true" minlength="11" maxlength="11" placeholder="请输入手机号码">
+                                        </div>
+                                        <div class="col-12 mb--20">
+                                            <label>密码</label>
+                                            <input class="form-control" id="password" name="password" required="true" type="password" placeholder="请输入密码">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="check-box">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="forgotton-password_info">
+                                                <a href="#">忘记密码</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button onclick="login()" type="submit" style="width: 50%;margin: 0 auto;" class="umino-login_btn">登录
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="register" class="tab-pane" role="tabpanel">
+
+                            <form name="RegisterForm" id="RegisterForm" method="post">
+                                <div class="login-form">
+                                    <div class="row">
+                                        <div class="col-md-12 col-12 mb--20">
+                                            <label>手机号</label>
+                                            <input required="true" id="id" name="id"  minlength="11" maxlength="11" type="text" placeholder="请输入手机号">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>邮箱</label>
+                                            <input required="true" id="email" name="email" type="email" placeholder="请输入邮箱">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>姓名</label>
+                                            <input required="true" id="nickname" name="nickname" type="text" placeholder="请输入姓名">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>密码</label>
+                                            <input required="true" id="pw" name="password" type="password" placeholder="请输入密码">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>确认密码</label>
+                                            <input required="true" id="repw" type="password" placeholder="确认密码"><span id="tishi"></span></input>
+                                        </div>
+                                        <div class="col-md-12 col-12 mb--20">
+                                            <button onclick="register()"   id="rg" type="submit" style="width: 100%;margin-top: 40px;" class="umino-register_btn">
+                                                注册
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Umino's Login Register Area  End Here -->
+
+    <div th:replace="system/common/commons.html::bottomBar"></div>
+
+</div>
+
+<script th:src="@{/jquery-validation/jquery.validate.min.js}"></script>
+<script th:src="@{/jquery-validation/localization/messages_zh.min.js}"></script>
+<script th:src="@{/layer/layer.js}"></script>
+<script th:src="@{/js/md5.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+</body>
+
+<script type="text/javascript">
+
+    function login() {
+        $("#loginForm").validate({
+            submitHandler: function () {
+                doLogin();
+            }
+        });
+    }
+
+    function register() {
+
+        $("#RegisterForm").validate({
+            submitHandler: function () {
+                doRegister();
+            }
+        });
+    }
+
+    function doRegister(){
+        //密码一致后进行注册
+        g_showLoading();
+        $.ajax({
+            url:"/system/userInfo/doRegister",
+            type:"POST",
+            data:{
+                id: $("#id").val(),
+                email: $("#email").val(),
+                nickname: $("#nickname").val(),
+                password: $("#pw").val(),
+                repassword:$("#repw").val()
+            },
+            success: function(data){
+                if(data.code == 200){
+
+                    window.location.href = "/";
+                }else{
+                    layer.msg(data.message);
+                }
+            },
+            error: function(){
+                layer.msg("注册失败");
+            }
+        })
+    }
+
+    function doLogin() {
+        g_showLoading();
+        var inputPass = $("#password").val();
+        var salt = g_passsword_salt;
+        var str = "" + salt.charAt(0) + salt.charAt(2) + inputPass + salt.charAt(5) + salt.charAt(4);
+        var password = md5(str);
+
+        $.ajax({
+            url: "/doLogin",
+            type: "POST",
+            data: {
+                mobile: $("#mobile").val(),
+                password: password
+            },
+            success: function (data) {
+                layer.closeAll();
+                if (data.code == 200) {
+                    window.location.href = "/";
+                } else {
+                    layer.msg(data.message);
+                }
+            },
+            error: function () {
+                layer.closeAll();
+            }
+        });
+    }
+</script>
+
+</html>
+

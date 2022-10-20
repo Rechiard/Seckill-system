@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>个人中心</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/fontawesome-stars.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/ion-fonts.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/slick.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/animate.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/venobox.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/nice-select.css}">
+    <link rel="stylesheet" th:href="@{assets/css/style.css}">
+
+    <link rel="stylesheet" th:href="@{/layuimini/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/css/public.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/js/lay-module/dtree/dtree.css}">
+    <link rel="stylesheet" th:href="@{/layuimini/js/lay-module/dtree/font/dtreefont.css}">
+
+
+</head>
+
+<body class="template-color-1">
+
+<div class="main-wrapper">
+
+    <div th:replace="system/common/commons.html::topBar"></div>
+
+    <!-- Begin Umino's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a th:href="@{/toIndex}">首页</a></li>
+                    <li class="active">个人中心</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Breadcrumb Area End Here -->
+
+    <!-- Begin Umino's Login Register Area -->
+    <div class="umino-product-tab_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-2 ht-menu">
+                    <ul class="nav flex-column dashboard-list mb-20 role=" tablist>
+                        <li><a class="nav-link active show" data-toggle="tab" href="#dashboard">个人中心</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#account-details">信息详情</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#delivery-addr">收货地址</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#change-password">修改密码</a></li>
+                        <li><a class="nav-link" th:href="@{/loginOut}">退出登录</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard-content mb-20">
+                        <div id="dashboard" class="tab-pane fade active show">
+                            <h3 class="last-title">个人中心 </h3>
+                            <p><span>欢迎您,[[${userInfo.getNickname()}]]</span>用户。您可以轻松地查看个人中心，管理您的个人信息，并编辑您的密码和帐户详细信息。</p>
+                            <p>这是您的个人中心页面，在这里您可以看到您的一些内容和信息，方便你修改和编辑个人信息</p>
+                        </div> <!-- end of tab-pane -->
+                        <div id="account-details" class="tab-pane fade">
+                            <h3 class="last-title">编辑您的个人信息 </h3>
+                            <div class="checkout_info">
+
+                                <form class="login-form">
+                                    <input id="id" name="id" hidden th:value="${userInfo.getId()}">
+                                    <div class="form_group col-12">
+                                        <label class="form-label">注册时间<span>*</span></label>
+                                        <input class="input-form" id="registerDate" name="registerDate" readonly unselectable="on" type="text" th:value="${userInfo.getRegisterDate()}">
+                                    </div>
+
+                                    <div class="form_group col-12 ">
+                                        <label class="form-label">姓名 <span>*</span></label>
+                                        <input id="nickname" name="nickname" type="text" th:value="${userInfo.getNickname()}">
+                                    </div>
+
+                                    <div class="form_group col-12 ">
+                                        <label class="form-label">邮箱 <span>*</span></label>
+                                        <input id="email" name="email" type="text" th:value="${userInfo.getEmail()}">
+                                    </div>
+
+                                    <div class="form_group col-12">
+                                        <label class="form-label">电话 <span>*</span></label>
+                                        <input id="mobile" name="mobile" type="text" th:value="${userInfo.getId()}">
+                                    </div>
+                                    <div style="width:100%">
+                                        <button type="button" style="margin-left:13px;width:100%" class="umino-login_btn" onclick="doSaveEntity()">保存</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div id="delivery-addr" class="tab-pane">
+                            <h3 class="last-title">常用收货地址 </h3>
+                            <div class="layuimini-main">
+                                <script type="text/html" id="toolbar">
+                                    <div class="layui-btn-container">
+                                        <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"><i class="layui-icon layui-icon-addition"></i>新增收货地址</button>
+                                    </div>
+                                </script>
+
+
+                                <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+                                <script type="text/html" id="currentTableBar">
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+                                    <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="del">删除</a>
+                                </script>
+                            </div>
+                        </div>
+                        <!-- end of tab-pane -->
+
+                        <!-- end of tab-pane -->
+                        <div id="change-password" class="tab-pane">
+                            <h3 class="last-title">修改密码 </h3>
+                            <div class="checkout_info">
+
+                                <form class="login-form">
+                                    <input name="id" hidden th:value="${userInfo.getId()}">
+                                    <div class="form_group col-12">
+                                        <label class="form-label">旧密码 <span>*</span></label>
+                                        <input class="input-form" id="oldPassword" name="oldPassword" type="password" required="required">
+                                    </div>
+                                    <div class="form_group col-12">
+                                        <label class="form-label">新密码 <span>*</span></label>
+                                        <input class="input-form" id="newPassword1" name="newPassword1" type="password" required="required">
+                                    </div>
+                                    <div class="form_group col-12">
+                                        <label class="form-label">再次输入新密码 <span>*</span></label>
+                                        <input class="input-form" id="newPassword2" name="newPassword2" type="password" required="required">
+                                    </div>
+                                    <div class="form-row mt-20" style="width:100%">
+                                        <button type="button" style="margin-left:13px;width:100%" onclick="doUpdatePwd()" class="umino-login_btn">修改</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <!-- end of tab-pane -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Umino's Login Register Area  End Here -->
+
+    <div th:replace="system/common/commons.html::bottomBar"></div>
+
+</div>
+
+<div id="dataFormModal" style="display: none;padding: 10px">
+    <form class="layui-form layuimini-form" id="dataForm" lay-filter="dataFormFilter">
+        <input type="hidden" name="id">
+        <input type="hidden" id="userId" name="userId" th:value="${userInfo.getId()}">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">联系人</label>
+            <div class="layui-input-block">
+                <input type="text" name="userNickname" lay-verify="required" placeholder="请输入内容" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">手机号码</label>
+            <div class="layui-input-block">
+                <input type="text" name="userMobile" lay-verify="required" placeholder="请输入内容" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">收货地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="userDeliveryAddr" lay-verify="required" placeholder="请输入内容" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn layui-btn-normal" lay-submit lay-filter="dataFormSubmit">保存</button>
+                <button type="button" class="layui-btn layui-btn-primary" id="dataFormReset">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script th:src="@{/layer/layer.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/layuimini/js/lay-module/xm-select/xm-select.js}"></script>
+<script th:src="@{/layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/js/lay-config.js?v=2.0.0}" charset="utf-8"></script>
+</body>
+
+<script>
+
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table
+
+        let active = {
+            dataModelType: 1,
+            openDataFormModal() {
+                let title = active.dataModelType == 1 ? '添加收货地址' : '编辑收货地址';
+                layer.open({
+                    title: title
+                    , type: 1
+                    , content: $('#dataFormModal')
+                    , area: ['50%', '50%']
+                    , maxmin: true
+                    , cancel: function () {
+                        active.closeDataFormModal();
+                    }
+                });
+            },
+            closeDataFormModal() {
+                $('#dataForm')[0].reset();
+                layer.closeAll();
+            }
+        };
+
+        table.render({
+            elem: '#currentTableId',
+            method: 'post',
+            where:{
+                userId: $("#userId").val()
+            },
+            url: '/system/deliveryAddrInfo/listByTable',
+            toolbar: '#toolbar',
+            defaultToolbar: ['filter', 'exports', 'print'],
+            cols: [ [
+                {type: 'numbers',title: '序号'},
+                {field: 'userNickname', width: 150, title: '联系人'},
+                {field: 'userMobile', width: 200, title: '手机号码'},
+                {field: 'userDeliveryAddr', title: '收货地址'},
+                {title: '操作', width: 200,align:"center", toolbar: '#currentTableBar', align: "center"}
+            ]],
+            limits: [10, 15, 20,50,100],
+            limit: 20,
+            page: true,
+        });
+
+        /**
+         * 添加收货地址
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+            if (obj.event === 'add') {  // 监听添加操作
+                active.dataModelType = 1;
+                active.openDataFormModal();
+            }
+        });
+
+        /**
+         * 编辑、删除收货地址
+         */
+        table.on('tool(currentTableFilter)',function (obj) {
+            let data = obj.data;
+            if(obj.event === 'edit'){
+                //显示当前行的数据
+                active.dataModelType = 2;
+                form.val('dataFormFilter',data);
+                active.openDataFormModal();
+            }else if(obj.event === 'del'){
+                layer.confirm('确定删除该收货地址嘛?',function (index) {
+                    $.ajax({
+                        type: 'post',
+                        url: '/system/deliveryAddrInfo/deleteById',
+                        data: {id: data.id},
+                        dataType: 'json',
+                        success: function (res) {
+                            if(res.code == 200){
+                                layer.msg(res.data, {time: 1000, icon: 1}, function () {
+                                    window.location.reload();
+                                });
+                            }else{
+                                layer.msg(res.data, {time: 1000, icon: 2});
+                            }
+                        },
+                        error: function (res){
+                            layer.msg('请求失败',{time: 1000, icon: 2});
+                        }
+                    });
+                });
+            }
+        });
+
+        // 监听 add表单 关闭
+        $('#dataFormReset').on('click', function () {
+            active.closeDataFormModal();
+        });
+        //监听表单提交
+        form.on('submit(dataFormSubmit)', function (data) {
+            $.ajax({
+                type: 'post',
+                url: active.dataModelType == 1 ? '/system/deliveryAddrInfo/save' : '/system/deliveryAddrInfo/updateById',
+                dataType: 'json',
+                data: data.field,
+                success: function (res) {
+                    if(res.code == 200){
+                        layer.msg(res.data, {time: 1000, icon: 1}, function () {
+                            window.location.reload();
+                        });
+                    }else{
+                        layer.msg(res.data, {time: 1000, icon: 2});
+                    }
+                },
+                error: function (res){
+                    layer.msg('请求失败',{time: 1000, icon: 2});
+                }
+            });
+            return false;
+        });
+
+    });
+
+
+    function doSaveEntity(){
+        layer.confirm("确定修改嘛？", {btn: ["确定", "取消"]},
+            function () {
+                g_showLoading();
+                $.ajax({
+                    url:"/system/userInfo/saveEntity",
+                    type:"POST",
+                    data:{
+                        id: $("#id").val(),
+                        nickname: $("#nickname").val(),
+                        email: $("#email").val(),
+                        registerDate: $("#registerDate").val()
+                    },
+                    success: function(data){
+                        if(data.code == 200){
+                            window.location.href = "/toMyAccount";
+                        }else{
+                            layer.msg(data.message);
+                        }
+                    },
+                    error: function(){
+                        layer.msg("修改失败");
+                    }
+                })
+            },
+            function () {
+                layer.close();
+            })
+    }
+
+    function doUpdatePwd(){
+        layer.confirm("确定修改嘛？", {btn: ["确定", "取消"]},
+            function () {
+                g_showLoading();
+                $.ajax({
+                    url:"/system/userInfo/updatePwd",
+                    type:"POST",
+                    data:{
+                        id: $("#id").val(),
+                        oldPassword: $("#oldPassword").val(),
+                        newPassword1: $("#newPassword1").val(),
+                        newPassword2: $("#newPassword2").val()
+                    },
+                    success: function(data){
+                        if(data.code == 200){
+                            layer.confirm("修改密码成功，请重新登录", {btn: ["确定"]},
+                            function (){
+                                window.location.href = "/toLoginOrRegister";
+                            })
+                        }else{
+                            layer.msg(data.message);
+                        }
+                    },
+                    error: function(){
+                        layer.msg("修改失败");
+                    }
+                })
+            },
+            function () {
+                layer.close();
+            })
+    }
+</script>
+
+
+
+</html>
+

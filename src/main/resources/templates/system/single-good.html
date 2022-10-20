@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>商品详情</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <!-- CSS
+	============================================ -->
+
+    <link rel="stylesheet" th:href="@{assets/css/vendor/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/fontawesome-stars.css}">
+    <link rel="stylesheet" th:href="@{assets/css/vendor/ion-fonts.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/slick.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/animate.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/venobox.css}">
+    <link rel="stylesheet" th:href="@{assets/css/plugins/nice-select.css}">
+    <link rel="stylesheet" th:href="@{assets/css/style.css}">
+
+</head>
+
+<body class="template-color-1">
+
+<div class="main-wrapper">
+
+    <div th:replace="system/common/commons.html::topBar"></div>
+
+    <!-- Begin Umino's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a th:href="@{/toIndex}">首页</a></li>
+                    <li class="active">商品详情</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Breadcrumb Area End Here -->
+
+    <!-- Begin Umino's Single Product Area -->
+    <div class="sp-area">
+        <div class="container">
+            <div class="sp-nav">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="sp-img_area">
+                            <div class="zoompro-border">
+                                <img style="" class="zoompro"  th:src="${goodsInfo.getGoodsImg()}"
+                                     th:data-zoom-image="${goodsInfo.getGoodsImg()}"
+                                     alt="Umino's Product Image"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="sp-content">
+
+                            <form method="post">
+                            <input type="hidden" id="userId" name="userId" th:if="${userInfo != null}" th:value="${userInfo.getId()}">
+                            <input type="hidden" id="goodsId" name="goodsId" th:value="${goodsInfo.getId()}">
+                            <input type="hidden" id="goodsImg" name="goodsImg" th:value="${goodsInfo.getGoodsImg()}">
+                            <div class="price-box">
+                                <span class="new-price">￥[[${goodsInfo.getGoodsPrice()}]]</span>
+                                <input type="hidden" id="goodsPrice" name="goodsPrice" th:value="${goodsInfo.getGoodsPrice()}">
+                            </div>
+                            <div class="sp-heading">
+                                <h2><a href="javascript:void(0)">[[${goodsInfo.getGoodsName()}]]</a></h2>
+                                <input type="hidden" id="goodsName" name="goodsName" th:value="${goodsInfo.getGoodsName()}">
+                            </div>
+                            <div class="product-desc">
+                                <p>[[${goodsInfo.getGoodsDetail()}]]</p>
+                            </div>
+                            <div class="product-size_box">
+                                <span>内存容量</span>
+                                <select class="myniceselect nice-select" id="goodsCapacity" name="goodsCapacity">
+                                    <option th:value="32GB">32GB</option>
+                                    <option th:value="64GB">64GB</option>
+                                    <option th:value="128GB">128GB</option>
+                                    <option th:value="256GB">256GB</option>
+                                </select>
+                            </div>
+                            <div class="in-stock"><i class="fa fa-check-circle"></i><span>[[${goodsInfo.getGoodsStock()}]] 库存充足</span></div>
+                            <div class="quantity">
+                                <label>数量</label>
+                                <div class="cart-plus-minus">
+                                    <input class="cart-plus-minus-box" id="goodsCount" name="goodsCount" value="1" type="text">
+                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                </div>
+                                <div class="additional-btn_area">
+                                    <button type="submit" class="additional_btn" lay-submit lay-filter="orderForm">购买</button>
+                                </div>
+                            </div>
+                            </form>
+
+                            <div class="category-list_area">
+                                <div class="additional-btn_area">
+                                    <label>所有支付方式</label>
+                                    <a href="javascript:void(0)">
+                                        <img src="assets/images/footer/payment/1.png" alt="Umino's Payment Method">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="category-list_area">
+                                <h6>分类:</h6>
+                                <ul class="tags-list">
+                                    <li>
+                                        <a href="javascript:void(0)">电器,</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">电视,</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">电子产品,</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">智能手机,</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">充电装置,</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">晶体管,</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="category-list_area tag-list_area">
+                                <h6>标签:</h6>
+                                <ul class="tags-list">
+                                    <li>
+                                        <a href="javascript:void(0)">手机</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="umino-social_link">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Single Product Area End Here -->
+
+    <!-- Begin Umino's Single Product Tab Area -->
+    <div class="sp-tab_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sp-product-tab_nav">
+                        <div class="product-tab">
+                            <ul class="nav product-menu">
+                                <li><a class="active" data-toggle="tab" href="#description"><span>商品介绍</span></a>
+                                </li>
+                                <li><a data-toggle="tab" href="#specification"><span>规格与包装</span></a></li>
+                                <li><a data-toggle="tab" href="#reviews"><span>售后保证</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content umino-tab_content">
+                            <div id="description" class="tab-pane active show" role="tabpanel">
+                                <div class="product-description">
+                                    <p class="short-desc">
+                                        美国作家、电影剧本编剧。年轻并极富魅力，深爱阅读与创作，为《纽约时报书评》撰稿，现居洛杉矶。毕业于哈佛大学英美文学系，已经出版了八本小说，作品被翻译成二十多种语言。14岁时，她写了一封关于“枪与玫瑰乐团”的信函投给当地报社，措辞激烈，意外获得该报的乐评人一职，迈出了成为作家的第一步。一直以来，她对书、书店以及爱书人的未来，充满见解。她的第八本小说《岛上书店》在2014年以无人能比的高票数，获选美国独立书商选书桂冠。作者官网：http://gabriellezevin.com/
+                                    </p>
+                                    <p class="additional-desc">
+                                        Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis
+                                        fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa
+                                        massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit
+                                        est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere
+                                        nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et,
+                                        luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="specification" class="tab-pane" role="tabpanel">
+                                <table class="table table-bordered specification-inner_stuff">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>权利声明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td>所有商品信息、客户评价、商品咨询、网友讨论等内容，是京东重要的经营资源，未经许可，禁止非法转载使用。</td>
+                                        <td>
+                                            注：本站商品信息均来自于合作方，其真实性、准确性和合法性由信息拥有者（合作方）负责。本站不提供任何保证，并不承担任何法律责任。印刷版次不同，印刷时间和版次以实物为准。
+                                        </td>
+                                        <td>商城向您保证所售商品均为正品行货，商品开具机打发票或电子发票。</td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>价格说明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td><strong>销售价:</strong>商品的销售价，是您最终决定是否购买商品的依据。</td>
+                                        <td><strong>折扣：</strong>如无特殊说明，折扣指销售商在原价、或划线价（如品牌专柜标价、商品吊牌价、厂商指导价、厂商建议零售价）等某一价格基础上计算出的优惠比例或优惠金额；如有疑问，您可在购买前联系销售商进行咨询。
+                                        </td>
+                                        <td><strong>异常问题：</strong>商品促销信息以商品详情页“促销”栏中的信息为准；商品的具体售价以订单结算页价格为准；如您发现活动商品售价或促销信息有异常，建议购买前先联系销售商咨询。
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="reviews" class="tab-pane" role="tabpanel">
+                                <table class="table table-bordered specification-inner_stuff">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>权利声明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td>所有商品信息、客户评价、商品咨询、网友讨论等内容，是京东重要的经营资源，未经许可，禁止非法转载使用。</td>
+                                        <td>
+                                            注：本站商品信息均来自于合作方，其真实性、准确性和合法性由信息拥有者（合作方）负责。本站不提供任何保证，并不承担任何法律责任。印刷版次不同，印刷时间和版次以实物为准。
+                                        </td>
+                                        <td>商城向您保证所售商品均为正品行货，商品开具机打发票或电子发票。</td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>价格说明：</strong></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <td><strong>销售价:</strong>商品的销售价，是您最终决定是否购买商品的依据。</td>
+                                        <td><strong>折扣：</strong>如无特殊说明，折扣指销售商在原价、或划线价（如品牌专柜标价、商品吊牌价、厂商指导价、厂商建议零售价）等某一价格基础上计算出的优惠比例或优惠金额；如有疑问，您可在购买前联系销售商进行咨询。
+                                        </td>
+                                        <td><strong>异常问题：</strong>商品促销信息以商品详情页“促销”栏中的信息为准；商品的具体售价以订单结算页价格为准；如您发现活动商品售价或促销信息有异常，建议购买前先联系销售商咨询。
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Umino's Single Product Tab Area End Here -->
+
+    <div th:replace="system/common/commons.html::bottomBar"></div>
+
+</div>
+
+
+
+<script th:src="@{/layer/layer.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/layuimini/js/lay-module/xm-select/xm-select.js}"></script>
+<script th:src="@{/layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/js/lay-config.js?v=2.0.0}" charset="utf-8"></script>
+
+</body>
+
+
+<script>
+
+    layui.use(['form'], function () {
+        var $ = layui.jquery,
+            form = layui.form;
+
+        //监听表单提交
+        form.on('submit(orderForm)', function (data) {
+            $.ajax({
+                type: 'post',
+                url: '/system/orderInfo/save',
+                dataType: 'json',
+                data: {
+                    userId:$("#userId").val(),
+                    goodsId:$("#goodsId").val(),
+                    goodsPrice:$("#goodsPrice").val(),
+                    goodsName:$("#goodsName").val(),
+                    goodsCapacity:$("#goodsCapacity").val(),
+                    goodsCount:$("#goodsCount").val(),
+                    goodsImg:$("#goodsImg").val()
+                },
+                success: function (res) {
+                    if(res.code == 200){
+                        layer.msg(res.data, {time: 1000, icon: 1}, function () {
+                            window.location.href = '/toCart';
+                        });
+                    }else if(res.code == 500301){
+                        layer.msg(res.message, {time: 1000, icon: 2}, function(){
+                            window.location.href = '/toLoginOrRegister';
+                        });
+                    }else{
+                        layer.msg(res.message, {time: 1000, icon: 2});
+                    }
+                },
+                error: function (res){
+                    layer.msg('请求失败',{time: 1000, icon: 2});
+                }
+            });
+            return false;
+        });
+    })
+
+</script>
+
+
+
+</html>
+

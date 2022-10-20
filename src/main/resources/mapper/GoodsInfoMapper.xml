@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="e.commerce.haowu.system.mapper.GoodsInfoMapper">
+
+
+    <select id="countByTable" resultType="java.lang.Integer">
+        select count(A.id) from goods_info A where A.status = 1
+    </select>
+
+    <select id="listByTable" resultType="e.commerce.haowu.system.entity.GoodsInfo">
+        select <include refid="GoodsInfoVo"/>
+        from goods_info A
+        where A.status = 1
+        limit #{entity.offset}, #{entity.limit}
+    </select>
+
+    <select id="listByType" resultType="e.commerce.haowu.system.entity.GoodsInfo">
+        select <include refid="GoodsInfoVo"/>
+        from goods_info A
+        where A.status = 1 and A.goods_type = #{entity.goodsType}
+        limit #{entity.offset}, #{entity.limit}
+    </select>
+
+    <sql id="GoodsInfoVo">
+        A.id,
+        A.goods_name,
+        A.goods_img,
+        A.goods_detail,
+        A.goods_price,
+        A.goods_type,
+        A.goods_stock,
+        A.create_time
+    </sql>
+
+
+
+</mapper>

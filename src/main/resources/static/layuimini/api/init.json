@@ -1,0 +1,73 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "/toWelcome"
+  },
+  "logoInfo": {
+    "title": "好物管理系统",
+    "image": "layuimini/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "首页",
+      "icon": "fa fa-address-book",
+      "href": "/toWelcome",
+      "target": "_self",
+      "child": [
+        {
+          "title": "主页",
+          "href": "/toWelcome",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "前台管理",
+          "href": "",
+          "icon": "fa fa-building-o",
+          "target": "",
+          "child": [
+            {
+              "title": "用户管理",
+              "href": "system/userInfo/init",
+              "icon": "fa fa-user",
+              "target": "_self"
+            },
+            {
+              "title": "商品管理",
+              "href": "system/goodsInfo/init",
+              "icon": "fa fa-coffee",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "后台管理",
+          "icon": "fa fa-slideshare",
+          "href": "",
+          "target": "_self",
+          "child": [
+            {
+              "title": "订单管理",
+              "href": "system/orderInfo/init",
+              "icon": "fa fa-meetup",
+              "target": "_self"
+            },
+            {
+              "title": "历史订单",
+              "href": "system/orderInfo/initHistory",
+              "icon": "fa fa-ban",
+              "target": "_self"
+            },
+            {
+              "title": "MQ监测",
+              "href": "RabbitMQInit",
+              "icon": "fa fa-meetup",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

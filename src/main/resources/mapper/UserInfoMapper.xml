@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="e.commerce.haowu.system.mapper.UserInfoMapper">
+
+    <select id="countByTable" resultType="java.lang.Integer">
+        select count(A.id) from user_info A where A.status = 1
+    </select>
+
+    <select id="listByTable" resultType="e.commerce.haowu.system.entity.UserInfo">
+        select <include refid="UserInfoVo"/>
+        from user_info A
+        where A.status = 1
+        limit #{entity.offset}, #{entity.limit}
+    </select>
+
+    <insert id="insert" parameterType="e.commerce.haowu.system.entity.UserInfo">
+        insert into user_info(id,nickname,password,salt,register_date,role,status)
+        values
+        (#{entity.id},#{entity.nickname},#{entity.password},#{entity.salt},#{entity.registerDate},1,#{entity.status})
+    </insert>
+
+    <sql id="UserInfoVo">
+        A.id,
+        A.nickname,
+        A.register_date,
+        A.email,
+        A.role
+    </sql>
+
+
+</mapper>

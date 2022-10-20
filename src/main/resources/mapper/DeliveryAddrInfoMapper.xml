@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="e.commerce.haowu.system.mapper.DeliveryAddrInfoMapper">
+
+    <select id="countByTable" resultType="java.lang.Integer">
+        select count(A.id) from delivery_addr_info A where A.status = 1 and A.user_id = #{entity.userId}
+    </select>
+
+    <select id="listByTable" resultType="e.commerce.haowu.system.entity.DeliveryAddrInfo">
+        select <include refid="DeliveryAddrInfoVo"/>
+        from delivery_addr_info A
+        where A.status = 1 and A.user_id = #{entity.userId}
+        limit #{entity.offset}, #{entity.limit}
+    </select>
+
+    <sql id="DeliveryAddrInfoVo">
+        A.id,
+        A.user_id,
+        A.user_delivery_addr,
+        A.user_nickname,
+        A.user_mobile
+    </sql>
+
+</mapper>
